@@ -1,4 +1,5 @@
 ## Show Cases
+"author": "ascoders (ascoders/react-native-image-zoom)",
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -87,6 +88,7 @@ export default class App extends React.Component {
 | onMoveShouldSetPanResponder | () => boolean | Override onMoveShouldSetPanResponder behavior | undefined |
 | onPanResponderTerminationRequest | () => boolean | Override onMoveShouldSetPanResponder behavior | () => false |
 | useHardwareTextureAndroid | boolean | for disabling rendering to hardware texture on Android | true |
+| shouldBlockNativeResponse | boolean | for block native response for Android | false |
 
 | Method | params | Description |
 | --- | --- | --- |
