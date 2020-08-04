@@ -1,4 +1,17 @@
-import { GestureResponderEvent, PanResponderGestureState, LayoutChangeEvent, ViewStyle } from 'react-native';
+/* eslint-disable max-classes-per-file */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/static-property-placement */
+/* eslint-disable react/state-in-constructor */
+/* eslint-disable react/sort-comp */
+/* eslint-disable no-lonely-if */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/no-default-export */
+import {
+  GestureResponderEvent, PanResponderGestureState, LayoutChangeEvent, ViewStyle,
+} from 'react-native';
 
 export interface ICenterOn {
   x: number;
@@ -23,59 +36,28 @@ export interface IOnClick {
 }
 
 export class ImageZoomProps {
-  /**
-   * 操作区域宽度
-   */
   public cropWidth: number = 100;
 
-  /**
-   * 操作区域高度
-   */
   public cropHeight: number = 100;
 
-  /**
-   * 图片宽度
-   */
   public imageWidth: number = 100;
 
-  /**
-   * 图片高度
-   */
   public imageHeight: number = 100;
 
-  /**
-   * 单手是否能移动图片
-   */
   public panToMove?: boolean = true;
 
-  /**
-   * 多手指是否能缩放
-   */
   public pinchToZoom?: boolean = true;
 
-  /**
-   * 双击能否放大
-   */
+  public shouldBlockNativeResponse?: boolean = false;
+
   public enableDoubleClickZoom?: boolean = true;
 
-  /**
-   * 单击最大位移
-   */
   public clickDistance?: number = 10;
 
-  /**
-   * 最大滑动阈值
-   */
   public maxOverflow?: number = 100;
 
-  /**
-   * 长按的阈值（毫秒）
-   */
   public longPressTime?: number = 800;
 
-  /**
-   * 双击计时器最大间隔
-   */
   public doubleClickInterval?: number = 175;
 
   /**
@@ -117,50 +99,35 @@ export class ImageZoomProps {
   public maxScale?: number = 10;
 
   /**
-   * 是否启用原生动画驱动
+   * Disable touch
+   */
+  public disableTouch?: boolean = false;
+
+  /**
    * Whether to use native code to perform animations.
    */
   public useNativeDriver?: boolean = false;
 
-  /**
-   * 单击的回调
-   */
   public onClick?: (eventParams: IOnClick) => void = () => {
     //
   };
 
-  /**
-   * 双击的回调
-   */
   public onDoubleClick?: (eventParams: IOnClick) => void = () => {
     //
   };
 
-  /**
-   * 长按的回调
-   */
   public onLongPress?: (eventParams: IOnClick) => void = () => {
     //
   };
 
-  /**
-   * 横向超出的距离，父级做图片切换时，可以监听这个函数
-   * 当此函数触发时，可以做切换操作
-   */
   public horizontalOuterRangeOffset?: (offsetX: number) => void = () => {
     //
   };
 
-  /**
-   * 触发想切换到左边的图，向左滑动速度超出阈值时触发
-   */
   public onDragLeft?: () => void = () => {
     //
   };
 
-  /**
-   * 松手但是没有取消看图的回调
-   */
   public responderRelease?: (vx: number, scale: number) => void = () => {
     //
   };
@@ -192,13 +159,23 @@ export class ImageZoomProps {
   public onMoveShouldSetPanResponder?: (
     event: GestureResponderEvent,
     gestureState: PanResponderGestureState
-  ) => boolean;
+  ) => boolean = () => true;;
 
   /**
    * Allows overriding the default onStartShouldSetPanResponder behavior.
    * By default, always becomes the responder
    */
   public onStartShouldSetPanResponder?: (
+    event: GestureResponderEvent,
+    gestureState: PanResponderGestureState
+  ) => boolean = () => true;
+
+  public onStartShouldSetPanResponderCapture?: (
+    event: GestureResponderEvent,
+    gestureState: PanResponderGestureState
+  ) => boolean = () => true;
+
+  public onMoveShouldSetPanResponder?: (
     event: GestureResponderEvent,
     gestureState: PanResponderGestureState
   ) => boolean = () => true;
@@ -210,16 +187,11 @@ export class ImageZoomProps {
   public onPanResponderTerminationRequest?: (
     event: GestureResponderEvent,
     gestureState: PanResponderGestureState
-  ) => boolean = () => false;
+  ) => boolean = () => true;
 }
 
 export class ImageZoomState {
-  /**
-   * 中心 x 坐标
-   */
   public centerX?: number = 0.5;
-  /**
-   * 中心 y 坐标
-   */
+
   public centerY?: number = 0.5;
 }
